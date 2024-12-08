@@ -1,16 +1,8 @@
-# first_app
+# My First App
 
-A new Flutter project.
+Flutter Project สำหรับรายวิชา การพัฒนาโปรแกรมบนอุปกรณ์เคลื่อนที่แบบพกพา
+-------------------------------------------------------------------------------------
+1. Flutter Icon (Material Symbols & Icons) 👉 https://fonts.google.com/icons
+2. Flutter BottomNavigationBar 👉 https://api.flutter.dev/flutter/material/BottomNavigationBar-class.html
+3. Flutter Navigation and routing 👉 https://docs.flutter.dev/ui/navigation
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
