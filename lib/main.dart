@@ -1,29 +1,62 @@
 import 'package:flutter/material.dart';
-// import 'package:first_app/screens/home.dart';
+import 'package:myapp/screens/add.dart';
+import 'package:myapp/screens/home.dart';
+import 'package:myapp/screens/list.dart';
+import 'package:myapp/screens/setting.dart';
+import 'package:myapp/screens/login.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return const MaterialApp(
+//       home: LoginScreen(),
+//     );
+//   }
+// }
+
+class MyApp extends StatefulWidget {
+  static void resetApp(BuildContext context) {
+    final _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
+    state?.resetApp();
+  }
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Key _appKey = UniqueKey();
+
+  void resetApp() {
+    setState(() {
+      _appKey = UniqueKey();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: _MyHomePage(),
+    return MaterialApp(
+      key: _appKey,
+      debugShowCheckedModeBanner: false,
+      home: const LoginScreen(),
     );
   }
 }
 
-class _MyHomePage extends StatefulWidget {
-  const _MyHomePage();
+class MyHomePage extends StatefulWidget {
+  const MyHomePage();
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  MyHomePageState createState() => MyHomePageState();
 }
 
-class _MyHomePageState extends State<_MyHomePage> {
+class MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
   @override
@@ -52,6 +85,7 @@ class _MyHomePageState extends State<_MyHomePage> {
                 label: "Page4",
               ),
             ],
+            
             currentIndex: _selectedIndex,
             showSelectedLabels: false,
             showUnselectedLabels: false,
@@ -100,10 +134,7 @@ class _Page1NavigatorState extends State<_Page1Navigator> {
         return MaterialPageRoute(
             settings: settings,
             builder: (BuildContext context) {
-              if (settings.name == "/Page1List2") {
-                return const Page1List2();
-              }
-              return const Page1List1();
+              return const Home();
             });
       },
     );
@@ -164,7 +195,7 @@ class _Page2NavigatorState extends State<_Page2Navigator> {
         return MaterialPageRoute(
             settings: settings,
             builder: (BuildContext context) {
-              return const Page2List1();
+              return const Add();
             });
       },
     );
@@ -179,7 +210,7 @@ class Page2List1 extends StatelessWidget {
     return Column(
       children: <Widget>[
         AppBar(
-          title: const Text("Page 2"),
+          title: const Text("Page Add"),
         ),
       ],
     );
@@ -206,7 +237,7 @@ class _Page3NavigatorState extends State<_Page3Navigator> {
         return MaterialPageRoute(
             settings: settings,
             builder: (BuildContext context) {
-              return const Page3List1();
+              return const List();
             });
       },
     );
@@ -248,7 +279,7 @@ class _Page4NavigatorState extends State<_Page4Navigator> {
         return MaterialPageRoute(
             settings: settings,
             builder: (BuildContext context) {
-              return const Page4List1();
+              return const Setting();
             });
       },
     );
