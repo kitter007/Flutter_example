@@ -39,87 +39,122 @@ class _AddState extends State<Add> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("ADD COURSE",
-          style: TextStyle(
-            fontSize: 50, 
-            color: Colors.white,
-            fontWeight: FontWeight.w700),),
-        centerTitle: true,
-        backgroundColor: HexColor("#FF8800"),
-        toolbarHeight: 100,
-      ),
-      body: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+        appBar: AppBar(
+          title: const Text(
+            "ADD COURSE",
+            style: TextStyle(
+                fontSize: 50, color: Colors.white, fontWeight: FontWeight.w700),
+          ),
+          centerTitle: true,
+          backgroundColor: HexColor("#FF8800"),
+          toolbarHeight: 100,
+        ),
+        backgroundColor: Colors.white,
+        body: Scrollbar(
+            child: SingleChildScrollView(
+          child: Column(
             children: [
-              Container(
-                margin: const EdgeInsets.fromLTRB(0, 50, 0, 0),
-                width: 250,
-                height: 80,
-                decoration: BoxDecoration(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.fromLTRB(0, 50, 0, 0),
+                    width: 250,
+                    height: 80,
+                    decoration: BoxDecoration(
                       color: HexColor("#FF8800"),
                       borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(50.0),
                           bottomLeft: Radius.circular(50.0)),
                     ),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Icon(Icons.add_circle, size: 50, color: Colors.white,),
-                    Text("เพิ่มรายวิชา", style: TextStyle(fontSize: 30, color: Colors.white),)
-                  ],
-                ),
-              )
-            ],
-          ),
-          Center(
-            child: Card(
-              child: Container(
-                child: Column(
-                  children: [
-                    TextFormField(
-                      maxLength: 20,
-                      decoration: const InputDecoration(
-                        label: Text("รหัสวิชา"),
-                        border: OutlineInputBorder()
-                      )
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Icon(
+                          Icons.add_circle,
+                          size: 50,
+                          color: Colors.white,
+                        ),
+                        Text(
+                          "เพิ่มรายวิชา",
+                          style: TextStyle(fontSize: 30, color: Colors.white),
+                        )
+                      ],
                     ),
-                    TextFormField(
-                      maxLength: 20,
-                      decoration: const InputDecoration(
-                        label: Text("ชื่อรายวิชา"),
-                        border: OutlineInputBorder()
-                      )
+                  )
+                ],
+              ),
+              Center(
+                child: Card(
+                  color: HexColor("#F5F5F5"),
+                  margin: const EdgeInsets.all(20),
+                  child: Container(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      children: [
+                        TextFormField(
+                            maxLength: 20,
+                            decoration: const InputDecoration(
+                                label: Text("รหัสวิชา"),
+                                border: OutlineInputBorder())),
+                        TextFormField(
+                            maxLength: 20,
+                            decoration: const InputDecoration(
+                                label: Text("ชื่อรายวิชา"),
+                                border: OutlineInputBorder())),
+                        TextFormField(
+                            maxLength: 20,
+                            decoration: const InputDecoration(
+                                label: Text("ครูผู้สอน"),
+                                border: OutlineInputBorder())),
+                        DropdownMenu<ColorLabel>(
+                          width: MediaQuery.of(context).size.width,
+                          initialSelection: ColorLabel.green,
+                          controller: colorController,
+                          requestFocusOnTap: true,
+                          label: const Text('เลือกวัน'),
+                          onSelected: (ColorLabel? color) {
+                            setState(() {
+                              selectedColor = color;
+                            });
+                          },
+                          dropdownMenuEntries: ColorLabel.entries,
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        TextFormField(
+                            maxLength: 20,
+                            decoration: const InputDecoration(
+                                label: Text("เวลาเริ่ม"),
+                                border: OutlineInputBorder())),
+                        TextFormField(
+                            maxLength: 20,
+                            decoration: const InputDecoration(
+                                label: Text("เวลาสิ้นสุด"),
+                                border: OutlineInputBorder())),
+                      ],
                     ),
-                    TextFormField(
-                      maxLength: 20,
-                      decoration: const InputDecoration(
-                        label: Text("ครูผู้สอน"),
-                        border: OutlineInputBorder()
-                      )
-                    ),
-                    DropdownMenu<ColorLabel>(
-                      width: MediaQuery.of(context).size.width,
-                      initialSelection: ColorLabel.green,
-                      controller: colorController,
-                      requestFocusOnTap: true,
-                      label: const Text('เลือกวัน'),
-                      onSelected: (ColorLabel? color) {
-                        setState(() {
-                          selectedColor = color;
-                        });
-                      },
-                      dropdownMenuEntries: ColorLabel.entries,
-                    ),
-                  ],
+                  ),
                 ),
               ),
-            ),
-          )
-        ],
-      ),
-    );
+              Center(
+                child: SizedBox(
+                  width: 250,
+                  child: FilledButton(
+                      style: FilledButton.styleFrom(
+                          backgroundColor: HexColor("#20D300"),
+                          padding: const EdgeInsets.fromLTRB(30, 10, 30, 10)),
+                      onPressed: () {},
+                      child: const Text(
+                        "บันทึก",
+                        style: TextStyle(fontSize: 30),
+                      )),
+                ),
+              ),
+              const SizedBox(height: 20,)
+            ],
+          ),
+        )));
   }
 }
